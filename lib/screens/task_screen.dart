@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_flutter/models/task.dart';
 import 'package:todo_flutter/screens/add_task.dart';
 import 'package:todo_flutter/widgets/tasks_list.dart';
-import 'package:todo_flutter/models/task.dart';
 
 class TaskScreen extends StatefulWidget {
   @override
@@ -30,7 +30,14 @@ class _TaskScreenState extends State<TaskScreen> {
                     child: Container(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTask(),
+                      child: AddTask((newTaskTitle) {
+                        setState(() {
+                          tasks.add(
+                            Task(name: newTaskTitle),
+                          );
+                        });
+                        Navigator.pop(context);
+                      }),
                     ),
                   ));
         },
@@ -65,7 +72,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,

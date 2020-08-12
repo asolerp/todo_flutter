@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class AddTask extends StatelessWidget {
   String newTaskTitle;
-  Function addTask;
+  final Function addTaskCallback;
+
+  AddTask(this.addTaskCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,9 @@ class AddTask extends StatelessWidget {
                 ),
               ),
               color: Colors.lightBlueAccent,
-              onPressed: addTask,
+              onPressed: () {
+                addTaskCallback(newTaskTitle);
+              },
             ),
           ],
         ),
