@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddTask extends StatelessWidget {
+  String newTaskTitle;
+  Function addTask;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +33,9 @@ class AddTask extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              onChanged: (newText) {
+                newTaskTitle = newText;
+              },
             ),
             FlatButton(
               child: Text(
@@ -39,7 +45,7 @@ class AddTask extends StatelessWidget {
                 ),
               ),
               color: Colors.lightBlueAccent,
-              onPressed: () {},
+              onPressed: addTask,
             ),
           ],
         ),
